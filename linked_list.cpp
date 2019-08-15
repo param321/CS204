@@ -22,9 +22,13 @@ void del(){
     struct Node *new_node;
     new_node=lis;
     if(lis!=NULL){
-        lis=(lis->ptr);
+        if(lis!=NULL){
+            lis=(lis->ptr);
+        }
+        free(new_node);
+    }else{
+        cout<<-1<<endl;
     }
-    free(new_node);
 }
 
 void length(){
@@ -40,6 +44,10 @@ void length(){
 void delxy(int x,int y){
     struct Node *new_node=lis;
     struct Node *back_node=NULL;
+    if(new_node==NULL){
+        cout<<-1<<endl;
+        return;
+    }
     if(new_node->p==x&&new_node->q==y){
         lis=new_node->ptr;
         free(new_node);
@@ -49,7 +57,8 @@ void delxy(int x,int y){
         back_node=new_node;
         new_node=new_node->ptr;
         if(new_node==NULL){
-            break;
+            cout<<-1<<endl;
+            return;
         }
     }
     if(new_node->ptr!=NULL){
@@ -79,13 +88,19 @@ void search(float y){
     struct Node *new_node;
     new_node=lis;
     float j,k;
+    int p=0;
     while(new_node!=NULL){
         j=new_node->p;
         k=new_node->q;
         if(((j*j)+(k*k))<=y*y){
-            cout<<'('<<j<<','<<k<<')';
+            p++;
         }
         new_node=new_node->ptr;
+    }
+    if(p==0){
+        cout<<-1;
+    }else{
+        cout<<p;
     }
     cout<<endl;
 }
