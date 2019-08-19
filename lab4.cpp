@@ -28,9 +28,9 @@ int pr(char c){
 	}else if(c=='/'){
 		return 4;
 	}else if(c=='*'){
-		return 3;
+		return 4;
 	}else if(c=='+'){
-		return 2;
+		return 1;
 	}else if(c=='-'){
 		return 1;
 	}else{
