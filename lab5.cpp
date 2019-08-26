@@ -223,8 +223,10 @@ int main(){
                                     p=j;
                                 }
                             }       
-                            char c='0'+v.at(p);
-                            ss=ss+(c);  
+                            ostringstream str1; 
+                            str1 << v.at(p); 
+                            string geek = str1.str(); 
+                            ss=ss+geek; 
                         }else{
                             ss=ss+s[i];
                         }
