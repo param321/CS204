@@ -182,6 +182,7 @@ int value(node *root)
     return ans;
 }
 
+
 int main(){
     int t, n;
     cin >> t;
@@ -242,8 +243,10 @@ int main(){
                                     p=j;
                                 }
                             }
-                            char c='0'+v.at(p);
-                            ss=ss+(c);
+                            ostringstream str1; 
+                            str1 << v.at(p); 
+                            string geek = str1.str(); 
+                            ss=ss+geek;
                         }else{
                             ss=ss+s[i];
                         }
@@ -251,11 +254,7 @@ int main(){
                     vector<string> str = stov(ss);
                     str = post(str);
                     node *root = ctree(str);
-                    if(root == NULL){
-                        cout << "CANT BE EVALUATED" << endl;
-                    }else{
-                        cout << value(root) << endl;
-                    }
+                    cout << value(root) << endl;
                 }
             }
         }
