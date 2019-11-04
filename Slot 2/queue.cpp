@@ -1,108 +1,95 @@
-#include <bits/stdc++.h>
-using namespace std;
-struct Node
-{
-    int f;
-    int r;
-    int s;
-    unsigned capacity;
-    int *arr;
-};
-int isFull(Node *node)
-{
-    if (node->s == node->capacity)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-int isempty(Node *node)
-{
-    if (node->s == 0)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
+#include<bits/stdc++.h>
 
-Node *createq(unsigned capacity)
-{
-    Node *q = new Node();
-    q->capacity = capacity;
-    q->f = 0;
-    q->s = 0;
-    q->r = capacity - 1;
-    q->arr = new int[(q->capacity * sizeof(int))];
-    return q;
-}
-void enqueue(Node *que, int val)
-{
-    if (isFull(que))
+using namespace std;
+
+#define lli long long 
+
+struct node{
+    lli data;
+    node *next;
+};
+
+
+
+
+class Queue{
+    public:
+    void enqueue(lli x)
     {
-        return;
+        node *t=(node *)malloc(sizeof(node));
+        //cout<<"XXX";
+        // if(t==NULL)
+        // {
+        //     cout<<"Failed"<<endl; return;
+        // }
+        
+        t->data=x;
+        t->next=NULL;
+        if(this->start==NULL)
+        {
+            this->end=t;
+            this->start=t;
+        }
+        else{
+        this->end->next=t;
+        this->end=t;
+        }
+        cout<<"Added "<<x<<endl;
     }
-    que->r = (que->r + 1) % que->capacity;
-    que->arr[que->r] = val;
-    que->s += 1;
-}
-int dequeue(Node *que)
-{
-    if (isempty(que))
+    lli dequeue(void)
     {
-        return -1;
+        node *t=this->start;
+        if(!t)
+        {
+            cout<<"Queue is empty!!"<<endl;
+            return 0;
+        }
+        this->start=t->next;
+        lli x=t->data;
+        delete t;
+        cout<<x<<endl;
+        return x;
     }
-    int item = que->arr[que->f];
-    que->f = (que->f + 1) % que->capacity;
-    que->s -= 1;
-    return item;
-}
-int getf(Node *node)
-{
-    if (isempty(node))
+    void show()
     {
-        return INT_MIN;
+        node *t=this->start;
+        while(t!=NULL)
+        {
+            cout<<t->data<<' ';
+            t=t->next;
+        }    
+        cout<<endl;
     }
-    return node->arr[node->f];
-}
-int getr(Node *node)
-{
-    if (isempty(node))
+    Queue()
     {
-        return INT_MIN;
+        this->end=NULL;
+        this->start=NULL;
     }
-    return node->arr[node->r];
-}
+    private:
+    node *start,*end;
+};
 
 int main()
 {
-    Node *que = createq(1000);
-    int n;
-    cin >> n;
-
-    for (int i = 0; i < n; i++)
+    Queue Q;
+    start:
+    cout<<"Enter choice : \n 1. Enqueue \n 2. Dequeue \n 3. Show \n 4. Exit \n";
+    lli x;
+    lli c;
+    cin>>c;
+    switch(c)
     {
-        char c;
-        cin >> c;
-        if (c == 'E')
-        {
-            int l;
-            cin >> l;
-            enqueue(que, l);
-            cout << que->s << endl;
-        }
-        else
-        {
+        case 1: cin>>x;
+                Q.enqueue(x);
+                break;
+        case 2: Q.dequeue();
+                break;
+        case 3: Q.show();
+                break;
+        case 4: return 0;
+        default: cout<<"Wrong choice!!"<<endl;
 
-            cout << dequeue(que) << " ";
-            cout << que->s << endl;
-        }
     }
-
+    goto start;
     return 0;
 }
