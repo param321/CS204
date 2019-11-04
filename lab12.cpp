@@ -35,7 +35,7 @@ void union_sets(int a, int b) {
 
 struct Edge {
     ll u, v;
-    long double weight;
+    ll weight;
     bool operator<(Edge const& other) {
         return weight > other.weight;
     }
@@ -44,7 +44,7 @@ struct Edge {
 int main(){
     sexy;
     ll x,y,p,q,r,n,m;
-    long double z;
+    ll z;
     cin>>n>>m;
     vector <Edge> edges;
     for(ll i=0;i<m;i++){
