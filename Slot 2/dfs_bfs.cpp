@@ -37,8 +37,9 @@ void dfs(ll v) {
     used[v] = true;
     cout<<v<<" ";
     for(ll u : adj[v]){
-        if(!used[u])
+        if(!used[u]){
            dfs(u);
+	}
     }
 }
 
