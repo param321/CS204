@@ -5,7 +5,6 @@ using namespace std;
 #define ld long double
 #define st string
 #define sexy ios_base::sync_with_stdio(false); cin.tie(NULL)
-#define mod 1000000007
 vector<ll> parent;
 vector<ll> size;
 
