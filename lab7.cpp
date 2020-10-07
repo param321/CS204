@@ -23,7 +23,7 @@ int main(){
 		for(int j=0;j<y;j++){
 			cout<<ar[j];
 		}
-		cout<<endl;
+		cout<<"\n";
 	}
 	return 0;
 }
